@@ -9,6 +9,43 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..600&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "name": "SUKOVA S1 Smart 3-Head Electric Shaver (AI Voice Edition)",
+        "brand": { "@type": "Brand", "name": "SUKOVA" },
+        "model": "S1",
+        "category": "Men's Electric Shavers & Grooming Kits",
+        "description": "3-in-1 smart rotary electric shaver featuring snap-on NFC Beard, Nose, and Sideburn heads, live portrait color LCD screen, 2.4GHz Wi-Fi AI morning voice assistant, and universal USB Type-C charging.",
+        "additionalProperty": [
+          { "@type": "PropertyValue", "name": "Included Heads", "value": "3 NFC Auto-Sensing Heads (3D Rotary Beard, Nose & Ear, Sideburn Detailer)" },
+          { "@type": "PropertyValue", "name": "Motor Speed", "value": "2,800–3,200 RPM (Beard) / 4,500–5,000 RPM (Nose & Sideburn), 3 Comfort Gears" },
+          { "@type": "PropertyValue", "name": "Smart Display", "value": "Vertical Portrait Color LCD (Clock, Battery %, Temperature, RPM, Active Head)" },
+          { "@type": "PropertyValue", "name": "Voice Connectivity", "value": "2.4GHz Wi-Fi (802.11 b/g/n) Hands-Free Morning Assistant" },
+          { "@type": "PropertyValue", "name": "Battery & Charging", "value": "800mAh Li-Ion, 5V USB Type-C (~90 min charge, ≥90 min intermittent runtime)" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does the NFC smart head detection work on SUKOVA S1?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Each SUKOVA S1 Beard, Nose, and Sideburn attachment contains a built-in NFC tag. Snapping on a head automatically tunes motor speed (2,800–3,200 RPM for beard vs. 4,500–5,000 RPM for detailing) and logs blade wear on the color display." }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the AI voice assistant work without a phone nearby?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Once paired to 2.4GHz Wi-Fi, S1 wakes directly to answer morning weather checks, play short news briefings, or stream built-in audio hands-free at the sink." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- 0. Top Announcement Bar -->
@@ -148,6 +185,16 @@
       </div>
     </section>
 
+    <!-- 2.5 Storefront DTC Reassurance & Trust Strip -->
+    <div class="trust-strip">
+      <div class="page-container trust-strip-inner">
+        <div class="trust-item"><span class="trust-dot" aria-hidden="true"></span><span><strong>30-Day Trial</strong> · Risk-Free Return</span></div>
+        <div class="trust-item"><span class="trust-dot" aria-hidden="true"></span><span><strong>1-Year Warranty</strong> · Official Replacement Support</span></div>
+        <div class="trust-item"><span class="trust-dot" aria-hidden="true"></span><span><strong>Universal USB-C</strong> · 5V Global Travel Ready</span></div>
+        <div class="trust-item"><span class="trust-dot" aria-hidden="true"></span><span><strong>Ships Jan 2027</strong> · Priority Founding Batch</span></div>
+      </div>
+    </div>
+
     <!-- 3. White ToC 3-in-1 Smart Attachment Stage & In The Box -->
     <section id="attachments" class="section-band light-surface">
       <div class="page-container">
@@ -188,6 +235,15 @@
                 </span>
                 <span class="attach-pill tabular">4,500–5,000 RPM</span>
               </button>
+
+              <button type="button" class="attach-btn" aria-pressed="false" data-attach="docked">
+                <span class="attach-thumb"><img src="./assets/s1-docked.png" alt="Complete S1 Handle on Vertical Dock" /></span>
+                <span>
+                  <span class="attach-title" style="display:block;">Complete Docked Countertop Set</span>
+                  <span class="attach-sub" style="display:block;">Upright charging stand + live LCD &amp; voice hub</span>
+                </span>
+                <span class="attach-pill tabular">USB-C 5V Base</span>
+              </button>
             </div>
           </div>
 
@@ -197,17 +253,24 @@
               <img id="stageHeadImg" src="./assets/s1-head-rotary.png" alt="SUKOVA S1 3D Rotary Beard Shaving Head" />
             </div>
             <div class="stage-info-grid">
-              <h3 id="stageHeadTitle" class="stage-info-title">3D Rotary Beard Shaver</h3>
+              <div class="stage-title-row">
+                <h3 id="stageHeadTitle" class="stage-info-title">3D Rotary Beard Shaver</h3>
+                <div class="gear-pills" role="group" aria-label="Test 3 Comfort Speed Gears">
+                  <button type="button" class="gear-pill" aria-pressed="false" data-gear="gentle">Gentle</button>
+                  <button type="button" class="gear-pill" aria-pressed="true" data-gear="standard">Standard</button>
+                  <button type="button" class="gear-pill" aria-pressed="false" data-gear="turbo">Turbo</button>
+                </div>
+              </div>
               <p id="stageHeadDesc" class="stage-info-desc">
                 Triple floating rings adapt smoothly across cheekbones and jawline. Embedded NFC automatically dials in 2,800–3,200 RPM across Gentle, Standard, and Turbo gears while logging blade wear.
               </p>
               <div class="comfort-bar-row">
                 <div class="comfort-labels">
                   <span>NFC Auto-Tuned Motor Speed</span>
-                  <strong id="stageSpeedText" class="tabular">2,800–3,200 RPM · Smooth Face Comfort</strong>
+                  <strong id="stageSpeedText" class="tabular">3,000 RPM · Standard Daily Balance</strong>
                 </div>
                 <div class="comfort-track" aria-hidden="true">
-                  <div id="stageSpeedFill" class="comfort-fill" style="width:64%;"></div>
+                  <div id="stageSpeedFill" class="comfort-fill" style="width:68%;"></div>
                 </div>
               </div>
             </div>
@@ -757,6 +820,14 @@
       </div>
     </div>
   </footer>
+
+  <div id="mobileStickyBar" class="mobile-sticky-bar" aria-label="Quick Pre-Order">
+    <div style="font-size:12.5px; line-height:1.25;">
+      <strong style="display:block; font-family:var(--font-display);">SUKOVA S1 · Jan 2027</strong>
+      <span style="color:var(--home-lime); font-size:11px;">Early Bird · Save 20%</span>
+    </div>
+    <a href="#waitlist" class="btn btn-header btn-lime" style="padding:6px 14px; min-height:36px;">Pre-Order →</a>
+  </div>
 
   <script src="./app.js"></script>
 </body>

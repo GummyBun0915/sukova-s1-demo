@@ -935,6 +935,98 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   font-size: 12px; color: var(--home-footer-muted);
 }
 
+/* ===========================
+   DTC Trust Bar, 3-Gear Pills & Mobile Sticky Bar
+   =========================== */
+.trust-strip {
+  background: var(--home-paper);
+  border-bottom: 1px solid var(--home-dark-line);
+  font-size: 13.5px;
+  color: var(--home-body);
+}
+.trust-strip-inner {
+  min-height: 48px;
+  padding-block: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  align-items: center;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.trust-item strong { color: var(--home-ink); }
+.trust-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--brand-accent);
+  flex-shrink: 0;
+}
+@media (max-width: 960px) { .trust-strip-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .trust-strip-inner { grid-template-columns: 1fr; gap: 8px; } }
+
+.stage-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.gear-pills {
+  display: inline-flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid var(--home-dark-line);
+  background: var(--home-paper);
+}
+.gear-pill {
+  padding: 4px 11px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--home-sub);
+  cursor: pointer;
+  transition: background 160ms var(--ease), color 160ms var(--ease);
+}
+.gear-pill[aria-pressed="true"] {
+  background: var(--home-ink);
+  color: var(--home-lime);
+}
+
+.mobile-sticky-bar {
+  display: none;
+}
+@media (max-width: 600px) {
+  .site-footer { padding-bottom: 88px; }
+  .mobile-sticky-bar {
+    position: fixed;
+    left: 12px; right: 12px; bottom: 12px;
+    z-index: 35;
+    background: rgba(25, 25, 29, 0.96);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--home-line);
+    border-radius: 999px;
+    padding: 8px 10px 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: #ffffff;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+    transition: opacity 200ms var(--ease), transform 200ms var(--ease);
+  }
+  .mobile-sticky-bar.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(16px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }

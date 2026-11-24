@@ -55,7 +55,7 @@
     });
   });
 
-  // 4. ToC 3-in-1 Interactive Attachment Stage
+  // 4. ToC 3-in-1 Interactive Attachment Stage + 3-Gear Comfort Selector
   const attachmentData = {
     rotary: {
       img: './assets/s1-head-rotary.png',
@@ -63,8 +63,11 @@
       badge: 'Included · Pre-Installed',
       title: '3D Rotary Beard Shaver',
       desc: 'Triple floating rings adapt smoothly across cheekbones and jawline. Embedded NFC automatically dials in 2,800–3,200 RPM across Gentle, Standard, and Turbo gears while logging blade wear.',
-      speedText: '2,800–3,200 RPM · Smooth Face Comfort',
-      barWidth: '64%'
+      gears: {
+        gentle: { text: '2,800 RPM · Gentle Sensitive-Skin Gear', width: '58%' },
+        standard: { text: '3,000 RPM · Standard Daily Balance', width: '68%' },
+        turbo: { text: '3,200 RPM · Turbo Coarse-Beard Gear', width: '76%' }
+      }
     },
     nose: {
       img: './assets/s1-head-nose.png',
@@ -72,8 +75,11 @@
       badge: 'Included · Quick-Swap NFC',
       title: 'Nose & Ear Trimmer Head',
       desc: 'Snap in the vertical dome and S1 immediately boosts speed to 4,500–5,000 RPM for effortless, pinch-free trimming around delicate nasal and ear contours.',
-      speedText: '4,500–5,000 RPM · High-Speed Micro Cut',
-      barWidth: '92%'
+      gears: {
+        gentle: { text: '4,500 RPM · Gentle Comfort Trim', width: '84%' },
+        standard: { text: '4,750 RPM · Standard Clean Trim', width: '90%' },
+        turbo: { text: '5,000 RPM · High-Speed Micro Cut', width: '96%' }
+      }
     },
     sideburn: {
       img: './assets/s1-head-sideburn.png',
@@ -81,8 +87,23 @@
       badge: 'Included · Quick-Swap NFC',
       title: 'Sideburn & Edge Detailer',
       desc: 'Wide precision dual-tooth stainless blade calibrated via NFC to 4,500–5,000 RPM for razor-sharp sideburns, clean necklines, and mustache symmetry.',
-      speedText: '4,500–5,000 RPM · Crisp Line Control',
-      barWidth: '94%'
+      gears: {
+        gentle: { text: '4,500 RPM · Soft Neckline Edge', width: '85%' },
+        standard: { text: '4,800 RPM · Crisp Jawline Detail', width: '91%' },
+        turbo: { text: '5,000 RPM · Sharp Barbershop Line', width: '97%' }
+      }
+    },
+    docked: {
+      img: './assets/s1-docked.png',
+      alt: 'SUKOVA S1 Seated in Vertical Countertop Charging Base',
+      badge: 'Countertop Dock · USB-C 5V',
+      title: 'Complete Docked Countertop Set',
+      desc: 'Drop S1 upright into its compact dock after rinsing so blades air-dry cleanly while the 800mAh Li-Ion cell tops up via universal 5V Type-C (~90 min full charge).',
+      gears: {
+        gentle: { text: 'Standby · 2.4GHz Morning Voice Ready', width: '100%' },
+        standard: { text: 'Charging · 10%→100% in ~90 Min (USB-C)', width: '100%' },
+        turbo: { text: 'Full Cell · ≥90 Min Cordless Runtime', width: '100%' }
+      }
     }
   };
 
@@ -92,12 +113,23 @@
   const stageDesc = document.getElementById('stageHeadDesc');
   const stageSpeedText = document.getElementById('stageSpeedText');
   const stageSpeedFill = document.getElementById('stageSpeedFill');
+  let currentAttachKey = 'rotary';
+  let currentGearKey = 'standard';
+
+  function renderStageGear() {
+    const item = attachmentData[currentAttachKey];
+    if (!item || !item.gears) return;
+    const g = item.gears[currentGearKey] || item.gears.standard;
+    if (stageSpeedText) stageSpeedText.textContent = g.text;
+    if (stageSpeedFill) stageSpeedFill.style.width = g.width;
+  }
 
   document.querySelectorAll('[data-attach]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       const key = btn.getAttribute('data-attach');
       const item = attachmentData[key];
       if (!item) return;
+      currentAttachKey = key;
       document.querySelectorAll('[data-attach]').forEach(function (b) {
         b.setAttribute('aria-pressed', String(b === btn));
       });
@@ -105,8 +137,17 @@
       if (stageBadge) stageBadge.textContent = item.badge;
       if (stageTitle) stageTitle.textContent = item.title;
       if (stageDesc) stageDesc.textContent = item.desc;
-      if (stageSpeedText) stageSpeedText.textContent = item.speedText;
-      if (stageSpeedFill) stageSpeedFill.style.width = item.barWidth;
+      renderStageGear();
+    });
+  });
+
+  document.querySelectorAll('[data-gear]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      currentGearKey = btn.getAttribute('data-gear') || 'standard';
+      document.querySelectorAll('[data-gear]').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+      renderStageGear();
     });
   });
 
@@ -213,5 +254,17 @@
       waitlistStatus.textContent = 'Confirmed: "' + val + '" is queued for SUKOVA S1 January launch early access.';
       waitlistEmail.value = '';
     });
+  }
+
+  // 10. Mobile Sticky Pre-Order Bar Visibility
+  const mobileBar = document.getElementById('mobileStickyBar');
+  const waitlistSection = document.getElementById('waitlist');
+  if (mobileBar && waitlistSection && 'IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        mobileBar.classList.toggle('is-hidden', entry.isIntersecting);
+      });
+    }, { threshold: 0.15 });
+    obs.observe(waitlistSection);
   }
 })();
